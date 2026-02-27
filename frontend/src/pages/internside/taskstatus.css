@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ─── MAIN LAYOUT ─── */
+.ts-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #f0f2f8;
+}
+
+/* ─── SIDEBAR (unchanged) ─── */
+.ts-sidebar {
+  width: 300px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #4f46e5 0%, #6366f1 50%, #8b5cf6 100%);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.ts-brand-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.ts-brand-text {
+  color: white;
+  font-weight: 700;
+}
+
+.ts-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 35px;
+}
+
+.ts-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.625rem;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.ts-nav-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.ts-nav-item.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ─── MAIN ─── */
+.ts-main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* ─── TOPBAR (unchanged) ─── */
+.ts-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.ts-greeting {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.ts-greeting-sub {
+  font-size: 14px;
+  color: gray;
+}
+
+.ts-topbar-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* ─── STATS ─── */
+.ts-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ts-stat-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.ts-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.13);
+}
+
+.ts-stat-card--total {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+}
+
+.ts-stat-card--completed {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.3);
+}
+
+.ts-stat-card--pending {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.3);
+}
+
+/* Ghost number in background */
+.ts-stat-bg-number {
+  position: absolute;
+  right: 18px;
+  bottom: -8px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ts-stat-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.ts-stat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ts-stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ts-stat-value {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+}
+
+/* ─── TASK LIST ─── */
+.ts-task-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ─── TASK CARD ─── */
+.ts-task-card {
+  background: white;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  animation: taskReveal 0.35s ease both;
+}
+
+@keyframes taskReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ts-task-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Left status stripe */
+.ts-task-stripe {
+  width: 5px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.ts-task-card--completed .ts-task-stripe {
+  background: linear-gradient(180deg, #16a34a, #4ade80);
+}
+
+.ts-task-card--inprogress .ts-task-stripe {
+  background: linear-gradient(180deg, #d97706, #fbbf24);
+}
+
+.ts-task-card--pending .ts-task-stripe {
+  background: linear-gradient(180deg, #94a3b8, #cbd5e1);
+}
+
+/* Task info */
+.ts-task-info {
+  flex: 1;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ts-task-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1d2e;
+}
+
+.ts-task-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* ─── STATUS SELECT WRAPPER ─── */
+.ts-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.ts-select-icon {
+  position: absolute;
+  left: 11px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ts-select-chevron {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ts-status-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 9px 32px 9px 32px;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  min-width: 148px;
+  transition: all 0.2s ease;
+}
+
+.ts-status-select:hover {
+  filter: brightness(0.95);
+}
+
+/* Pending */
+.ts-status-pending {
+  background: #f1f5f9;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
+.ts-select-wrapper:has(.ts-status-pending) .ts-select-icon,
+.ts-select-wrapper:has(.ts-status-pending) .ts-select-chevron {
+  color: #64748b;
+}
+
+/* In Progress */
+.ts-status-ongoing {
+  background: #fffbeb;
+  color: #a16207;
+  border-color: #fde68a;
+}
+
+.ts-select-wrapper:has(.ts-status-ongoing) .ts-select-icon,
+.ts-select-wrapper:has(.ts-status-ongoing) .ts-select-chevron {
+  color: #d97706;
+}
+
+/* Completed */
+.ts-status-completed {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+.ts-select-wrapper:has(.ts-status-completed) .ts-select-icon,
+.ts-select-wrapper:has(.ts-status-completed) .ts-select-chevron {
+  color: #16a34a;
+}
+
+/* ─── EMPTY STATE ─── */
+.ts-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 18px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+  border: 2px dashed #e2e8f0;
+}
+
+
+/*logout*/
+
+/* Avatar Dropdown */
+.ts-avatar-wrapper {
+  position: relative;
+}
+
+.ts-topbar-avatar {
+  cursor: pointer;
+}
+
+.ts-avatar-dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  padding: 0.5rem 0;
+  min-width: 140px;
+  z-index: 200;
+  animation: tsFadeIn 0.15s ease-in-out;
+}
+
+.ts-dropdown-item {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0.65rem 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dc2626;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ts-dropdown-item:hover {
+  background: #fee2e2;
+}
+
+@keyframes tsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

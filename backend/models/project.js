@@ -4,26 +4,30 @@ const projectSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: true
     },
-    description: {
-      type: String,
-    },
-    team: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Team",
-      required: true,
-    },
-    createdBy: {
+
+    description: String,
+
+    teamLead: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      required: true
     },
+
+    interns: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ],
+
     status: {
       type: String,
       enum: ["ongoing", "completed"],
-      default: "ongoing",
-    },
+      default: "ongoing"
+    }
+
   },
   { timestamps: true }
 );

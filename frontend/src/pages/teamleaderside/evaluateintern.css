@@ -1,0 +1,17 @@
+
+/* Reuse create project base styles */
+@import "./createproject.css";
+
+/* Marks grid */
+.cp-marks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .cp-marks-grid {
+    grid-template-columns: 1fr;
+  }
+}

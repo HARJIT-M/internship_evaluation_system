@@ -26,8 +26,8 @@ const authRoutes = require("./routes/authroutes");
 app.use("/api/auth", authRoutes);
 
 // connecting teamroutes
-const teamRoutes = require("./routes/teamroutes");
-app.use("/api/team", teamRoutes);
+//const teamRoutes = require("./routes/teamroutes");
+//app.use("/api/team", teamRoutes);
 
 // connecting projectroutes
 const projectRoutes = require("./routes/projectroutes");
@@ -40,3 +40,16 @@ app.use("/api/task", taskRoutes);
 //connecting evaluationroutes.js
 const evaluationRoutes = require("./routes/evaluationroutes");
 app.use("/api/evaluation", evaluationRoutes);
+
+//connecting teamleadroutes.js
+app.use("/api/teamlead", require("./routes/teamleadroutes"));
+
+//connecting internroutes.js
+const internRoutes = require("./routes/internroutes");
+app.use("/api/intern", internRoutes);
+
+//connecting adminroutes.js
+const adminRoutes = require("./routes/adminroutes");
+app.use("/api/admin", adminRoutes);
+
+

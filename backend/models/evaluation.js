@@ -30,12 +30,18 @@ const evaluationSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+
+    status:{
+      type: String,
+      enum: ["ongoing", "completed"],
+      default: "ongoing"
+    }
   },
   { timestamps: true }
 );
 
 // Auto calculate score + grade
-evaluationSchema.pre("save", function (next) {
+evaluationSchema.pre("save", function () {
   this.totalScore =
     this.timeliness +
     this.behaviour +
@@ -48,8 +54,7 @@ evaluationSchema.pre("save", function (next) {
   else if (this.totalScore >= 35) this.grade = "B";
   else if (this.totalScore >= 25) this.grade = "C";
   else this.grade = "D";
-
-  //next();
+//next();
 });
 
 module.exports = mongoose.model("Evaluation", evaluationSchema);
