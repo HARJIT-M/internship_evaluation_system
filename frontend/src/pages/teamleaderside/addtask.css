@@ -667,3 +667,110 @@
 .at-intern-list-scroll::-webkit-scrollbar-thumb:hover {
   background: #a5b4fc;
 }
+
+/*new extra css*/
+
+/* ===== STEP INDICATOR ===== */
+.at-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 1.5rem;
+}
+
+.at-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.at-step--active {
+  color: #4f46e5;
+}
+
+.at-step--done {
+  color: #16a34a;
+}
+
+.at-step-circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #e5e7eb;
+  color: #9ca3af;
+  transition: all 0.2s;
+}
+
+.at-step--active .at-step-circle {
+  background: #4f46e5;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(79, 70, 229, 0.35);
+}
+
+.at-step--done .at-step-circle {
+  background: #16a34a;
+  color: #fff;
+}
+
+.at-step-line {
+  flex: 1;
+  height: 2px;
+  background: #e5e7eb;
+  margin: 0 0.75rem;
+  max-width: 60px;
+}
+
+/* ===== PROJECT BASED TOGGLE BUTTONS ===== */
+.at-toggle-btns {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.at-toggle-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid #e5e7eb;
+  background: #f9fafb;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.at-toggle-btn:hover {
+  border-color: #a5b4fc;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.at-toggle-btn--active.at-toggle-btn--no {
+  background: #f1f5f9;
+  border-color: #64748b;
+  color: #1e293b;
+}
+
+.at-toggle-btn--active.at-toggle-btn--yes {
+  background: #eef2ff;
+  border-color: #4f46e5;
+  color: #4f46e5;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+}
+
+/* ===== PROJECT AVATAR ===== */
+.at-project-avatar {
+  background: #eef2ff !important;
+  font-size: 1rem;
+}

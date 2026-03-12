@@ -187,7 +187,7 @@ export default function InternDashboard() {
               {projects.slice(0, 3).length === 0 ? (
                 <div className="in-empty">No projects found</div>
               ) : (
-                projects.slice(0, 3).map((project, index) => (
+                projects.slice(0, 4).map((project, index) => (
                   <div
                     key={project._id}
                     className={`in-project-card in-project-card--${project.status}`}

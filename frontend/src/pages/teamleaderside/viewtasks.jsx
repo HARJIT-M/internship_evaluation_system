@@ -12,9 +12,10 @@ export default function ViewTasks() {
   const [totalPages, setTotalPages] = useState(1);
   const [showMenu, setShowMenu] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [taskFilter, setTaskFilter] = useState("all");
 
   const navigate = useNavigate();
-  const limit = 6;
+  const limit = 5;
 
 
   const handleLogout = () => {
@@ -27,20 +28,45 @@ export default function ViewTasks() {
   }, [page]);
 
   useEffect(() => {
-    if (!search) {
-      setFiltered(tasks);
-    } else {
-      setFiltered(
-        tasks.filter(
-          (t) =>
-            t.title?.toLowerCase().includes(search.toLowerCase()) ||
-            t.assignedTo?.name?.toLowerCase().includes(search.toLowerCase()) ||
-            t.assignedTo?.email?.toLowerCase().includes(search.toLowerCase())
-        )
-      );
-    }
-  }, [search, tasks]);
 
+  let filteredTasks = tasks;
+
+  // SEARCH
+  if (search) {
+  const s = search.toLowerCase();
+
+  filteredTasks = filteredTasks.filter(
+    (t) =>
+      t.title?.toLowerCase().includes(s) ||
+      t.assignedTo?.name?.toLowerCase().includes(s) ||
+      t.assignedTo?.email?.toLowerCase().includes(s) ||
+      t.projectId?.title?.toLowerCase().includes(s)
+  );
+}
+
+  // PROJECT FILTER
+  if (taskFilter === "project") {
+    filteredTasks = filteredTasks.filter((t) => t.isProjectBased);
+  }
+
+  if (taskFilter === "general") {
+    filteredTasks = filteredTasks.filter((t) => !t.isProjectBased);
+  }
+
+  // CALCULATE TOTAL PAGES
+  const pages = Math.ceil(filteredTasks.length / limit);
+  setTotalPages(pages || 1);
+
+  // PAGINATION
+  const start = (page - 1) * limit;
+  const end = start + limit;
+
+  setFiltered(filteredTasks.slice(start, end));
+
+}, [search, tasks, taskFilter, page]);
+useEffect(() => {
+  setPage(1);
+}, [search, taskFilter]);
   const fetchTasks = async (pageNum) => {
     try {
       const token = localStorage.getItem("token");
@@ -59,6 +85,8 @@ export default function ViewTasks() {
 
   const completedCount = tasks.filter(t => t.status === "Completed").length;
   const pendingCount = tasks.filter(t => t.status !== "Completed").length;
+  const projectCount = tasks.filter(t => t.isProjectBased).length;
+const generalCount = tasks.filter(t => !t.isProjectBased).length;
 
   const getStatusClass = (status) => {
     if (status === "Completed") return "vt-chip--completed";
@@ -240,17 +268,51 @@ export default function ViewTasks() {
         <section className="vt-panel">
 
           <div className="vt-panel-topbar">
-            <div>
-              <h2 className="vt-panel-title">Assigned Tasks</h2>
-              <p className="vt-panel-sub">Status updated by interns</p>
-            </div>
+  <div>
+    <h2 className="vt-panel-title">Assigned Tasks</h2>
+    <p className="vt-panel-sub">Status updated by interns</p>
+
+    {/* FILTER BUTTONS */}
+    <div className="vt-filter-row">
+
+  <button
+    className={`vt-pill ${taskFilter === "all" ? "vt-pill--active" : ""}`}
+    onClick={() => setTaskFilter("all")}
+  >
+    <span className="vt-pill-dot" />
+    All
+    <span className="vt-pill-count">{tasks.length}</span>
+  </button>
+
+  <button
+    className={`vt-pill ${
+      taskFilter === "project" ? "vt-pill--active vt-pill--project" : ""
+    }`}
+    onClick={() => setTaskFilter("project")}
+  >
+    Project Tasks
+    <span className="vt-pill-count">{projectCount}</span>
+  </button>
+
+  <button
+    className={`vt-pill ${
+      taskFilter === "general" ? "vt-pill--active vt-pill--general" : ""
+    }`}
+    onClick={() => setTaskFilter("general")}
+  >
+    General Tasks
+    <span className="vt-pill-count">{generalCount}</span>
+  </button>
+
+</div>
+  </div>
             <div className="vt-search-wrap">
               <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m1.6-5.65a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input
                 className="vt-search"
-                placeholder="Search task or intern…"
+                placeholder="Search task or intern or project"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -260,14 +322,15 @@ export default function ViewTasks() {
           <div className="vt-table-wrap">
             <table className="vt-table">
               <thead>
-                <tr>
-                  <th>Task</th>
-                  <th>Intern</th>
-                  <th>Email</th>
-                  <th>Status</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
+  <tr>
+    <th>Task</th>
+    <th>Project</th>
+    <th>Intern</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Date</th>
+  </tr>
+</thead>
               <tbody>
                 {filtered.length > 0 ? (
                   filtered.map((task, index) => (
@@ -277,6 +340,22 @@ export default function ViewTasks() {
                       style={{ animationDelay: `${index * 0.04}s` }}
                     >
                       <td className="vt-task-title-cell">{task.title}</td>
+                      <td>
+  {task.isProjectBased ? (
+    <div className="vt-project-cell">
+      <div className="vt-project-type vt-project-task">
+        Project Task
+      </div>
+      <div className="vt-project-name">
+        {task.projectId?.title || "—"}
+      </div>
+    </div>
+  ) : (
+    <div className="vt-project-type vt-general-task">
+      General Task
+    </div>
+  )}
+</td>
                       <td>
                         <div className="vt-intern-cell">
                           <div className="vt-avatar">
@@ -304,7 +383,7 @@ export default function ViewTasks() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5" className="vt-empty-row">No tasks found</td>
+                    <td colSpan="6" className="vt-empty-row">No tasks found</td>
                   </tr>
                 )}
               </tbody>

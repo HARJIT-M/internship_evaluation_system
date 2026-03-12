@@ -29,14 +29,16 @@ router.post("/assign", protect, async (req, res) => {
       return res.status(403).json({ message: "Access denied" });
     }
 
-    const { title, description, internId } = req.body;
+    const { title, description, internId, isProjectBased, projectId } = req.body;
 
     const task = await Task.create({
-      title,
-      description,
-      assignedTo: internId,
-      assignedBy: req.user.id,
-    });
+  title,
+  description,
+  assignedTo: internId,
+  assignedBy: req.user.id,
+  isProjectBased: isProjectBased || false,
+  projectId: isProjectBased ? projectId : null
+});
 
     res.status(201).json(task);
   } catch (err) {
@@ -58,6 +60,7 @@ router.get("/my", protect, async (req, res) => {
 
     const tasks = await Task.find({ assignedTo: req.user.id })
       .populate("assignedBy", "name")
+      .populate("projectId", "title")
       .sort({ createdAt: -1 });
 
     res.status(200).json(tasks);
@@ -110,8 +113,9 @@ router.get("/teamlead", protect, async (req, res) => {
     }
 
     const tasks = await Task.find({ assignedBy: req.user.id })
-      .populate("assignedTo", "name email")
-      .sort({ createdAt: -1 });
+  .populate("assignedTo", "name email")
+  .populate("projectId", "title")
+  .sort({ createdAt: -1 });
 
     res.status(200).json(tasks);
   } catch (err) {

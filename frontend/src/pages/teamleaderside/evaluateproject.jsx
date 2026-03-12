@@ -125,7 +125,7 @@ export default function EvaluateProject() {
           <p className="ep-footer">
             <button
               className="ep-back-link"
-              onClick={() => navigate("/teamlead/dashboard")}
+              onClick={() => navigate("/teamlead")}
             >
               &larr; Back to Dashboard
             </button>

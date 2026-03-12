@@ -20,10 +20,21 @@ const taskSchema = new mongoose.Schema(
         required: true
     },
     status: {
-        type: String,
-        enum: ["Pending", "In Progress", "Completed"],
-        default: "Pending"
-    }
+    type: String,
+    enum: ["Pending", "In Progress", "Completed"],
+    default: "Pending"
+},
+
+isProjectBased: {
+    type: Boolean,
+    default: false
+},
+
+projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+    default: null
+}
 },
 { timestamps: true }
 );

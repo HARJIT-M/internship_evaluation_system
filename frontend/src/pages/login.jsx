@@ -153,12 +153,12 @@ export default function Login() {
 
             </form>
 
-            {/* 🔹 Divider */}
-            <div className="divider">
+            
+            {/* <div className="divider">
               <span>OR</span>
             </div>
 
-            {/* 🔹 Google Button */}
+
 <button
   className="google-btn"
   onClick={handleGoogleSignIn}
@@ -194,7 +194,7 @@ export default function Login() {
       <span>Sign in with Google</span>
     </>
   )}
-</button>
+</button> */}
 
           </div>
 

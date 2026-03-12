@@ -46,6 +46,12 @@ export default function InternRanking() {
         `http://localhost:8000/api/evaluation/ranking?page=${pageNum}&limit=${limit}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      const sorted = [...res.data.data].sort((a, b) => b.avgScore - a.avgScore);
+
+    const ranked = sorted.map((intern, index) => ({
+      ...intern,
+      rank: index + 1
+    }));
       setRanking(res.data.data);
       setFiltered(res.data.data);
       setTotalPages(res.data.totalPages);
