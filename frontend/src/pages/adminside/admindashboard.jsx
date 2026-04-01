@@ -9,7 +9,7 @@ import {
   deleteUser
 } from "../../services/adminservice";
 
-import "./AdminDashboard.css";
+import "./admindashboard.css";
 
 export default function AdminDashboard() {
 
