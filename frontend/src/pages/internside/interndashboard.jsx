@@ -41,7 +41,7 @@ export default function InternDashboard() {
   const fetchProjects = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/project/fetch",
+        "https://internship-evaluation-system.onrender.com/api/project/fetch",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setProjects(res.data || []);
@@ -53,7 +53,7 @@ export default function InternDashboard() {
   const fetchTasks = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/task/my",
+        "https://internship-evaluation-system.onrender.com/api/task/my",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setTasks(res.data || []);

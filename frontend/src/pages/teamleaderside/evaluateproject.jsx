@@ -15,7 +15,7 @@ export default function EvaluateProject() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:8000/api/project/teamlead/projects",
+          "https://internship-evaluation-system.onrender.com/api/project/teamlead/projects",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

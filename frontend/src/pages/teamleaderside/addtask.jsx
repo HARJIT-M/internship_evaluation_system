@@ -23,7 +23,7 @@ export default function AddTask() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "http://localhost:8000/api/project/teamlead/projects",
+          "https://internship-evaluation-system.onrender.com/api/project/teamlead/projects",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setProjects(res.data);
@@ -36,7 +36,7 @@ export default function AddTask() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "http://localhost:8000/api/intern/totalinterns",
+          "https://internship-evaluation-system.onrender.com/api/intern/totalinterns",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setInterns(res.data);
@@ -75,7 +75,7 @@ export default function AddTask() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:8000/api/task/assign",
+        "https://internship-evaluation-system.onrender.com/api/task/assign",
         {
           title,
           description,

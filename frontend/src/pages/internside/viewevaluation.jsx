@@ -45,7 +45,7 @@ export default function ViewEvaluation() {
   const fetchEvaluations = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/evaluation/intern",
+        "https://internship-evaluation-system.onrender.com/api/evaluation/intern",
         {
           headers: {
             Authorization: `Bearer ${token}`

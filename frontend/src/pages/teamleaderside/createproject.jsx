@@ -18,7 +18,7 @@ export default function CreateProject() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "http://localhost:8000/api/intern/totalinterns",
+          "https://internship-evaluation-system.onrender.com/api/intern/totalinterns",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setInterns(res.data);
@@ -57,7 +57,7 @@ export default function CreateProject() {
       const token = localStorage.getItem("token");
 
       const res = await axios.post(
-        "http://localhost:8000/api/project/create",
+        "https://internship-evaluation-system.onrender.com/api/project/create",
         { title, description },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -66,7 +66,7 @@ export default function CreateProject() {
 
       if (selectedInterns.length > 0) {
         await axios.put(
-          `http://localhost:8000/api/project/assign-interns/${projectId}`,
+          `https://internship-evaluation-system.onrender.com/api/project/assign-interns/${projectId}`,
           { internIds: selectedInterns },
           { headers: { Authorization: `Bearer ${token}` } }
         );

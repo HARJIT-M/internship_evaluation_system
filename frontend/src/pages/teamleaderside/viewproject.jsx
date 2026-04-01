@@ -24,7 +24,7 @@ export default function ViewProjects() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "http://localhost:8000/api/teamlead/dashboard",
+          "https://internship-evaluation-system.onrender.com/api/teamlead/dashboard",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setProjects(res.data.projects || []);

@@ -24,7 +24,7 @@ export default function TeamLeadDashboard() {
         const token = localStorage.getItem("token");
 
         const dashboardRes = await axios.get(
-          "http://localhost:8000/api/teamlead/dashboard",
+          "https://internship-evaluation-system.onrender.com/api/teamlead/dashboard",
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -32,7 +32,7 @@ export default function TeamLeadDashboard() {
         setTeamLeadName(dashboardRes.data.teamLead || "Team Lead");
 
         const topRes = await axios.get(
-  "http://localhost:8000/api/evaluation/top",
+  "https://internship-evaluation-system.onrender.com/api/evaluation/top",
   { headers: { Authorization: `Bearer ${token}` } }
 );
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:8000/api/admin";
+const API = "https://internship-evaluation-system.onrender.com/api/admin";
 
 const getToken = () => localStorage.getItem("token");
 

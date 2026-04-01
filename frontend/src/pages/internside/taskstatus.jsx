@@ -40,7 +40,7 @@ export default function TaskStatus() {
   const fetchTasks = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/task/my",
+        "https://internship-evaluation-system.onrender.com/api/task/my",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setTasks(res.data || []);
@@ -53,7 +53,7 @@ export default function TaskStatus() {
   const updateStatus = async (taskId, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:8000/api/task/update-status/${taskId}`,
+        `https://internship-evaluation-system.onrender.com/api/task/update-status/${taskId}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -27,7 +27,7 @@ export default function EvaluateIntern() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          `http://localhost:8000/api/project/${projectId}`,
+          `https://internship-evaluation-system.onrender.com/api/project/${projectId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -63,7 +63,7 @@ export default function EvaluateIntern() {
     const token = localStorage.getItem("token");
 
     await axios.put(
-      `http://localhost:8000/api/evaluation/update/${projectId}/${internId}`,
+      `https://internship-evaluation-system.onrender.com/api/evaluation/update/${projectId}/${internId}`,
       {
         ...marks,
         feedback,

@@ -1,7 +1,7 @@
 // src/services/authService.js
 import axios from "axios";
 
-const API = "http://localhost:8000/api/auth";
+const API = "https://internship-evaluation-system.onrender.com/api/auth";
 
 export const login = async (data) => {
   const res = await axios.post(`${API}/login`, data);

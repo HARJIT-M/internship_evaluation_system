@@ -71,7 +71,7 @@ useEffect(() => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        `http://localhost:8000/api/task/teamlead`,
+        `https://internship-evaluation-system.onrender.com/api/task/teamlead`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setTasks(res.data);

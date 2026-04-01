@@ -43,7 +43,7 @@ export default function InternRanking() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        `http://localhost:8000/api/evaluation/ranking?page=${pageNum}&limit=${limit}`,
+        `https://internship-evaluation-system.onrender.com/api/evaluation/ranking?page=${pageNum}&limit=${limit}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const sorted = [...res.data.data].sort((a, b) => b.avgScore - a.avgScore);
