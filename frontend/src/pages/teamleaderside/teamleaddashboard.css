@@ -196,14 +196,14 @@
 }
 
 .tl-stat-card {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 1.5rem;
+  position: relative;
+  border-radius: 18px;
+  padding: 20px 22px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 14px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .tl-stat-card:hover {
@@ -566,4 +566,128 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/*additional code*/
+
+/* ===== COLORFUL ENHANCEMENTS ===== */
+
+/* Topbar - accent top border */
+.tl-topbar {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 4px solid #4f46e5;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  margin-bottom: 2rem;
+}
+
+/* Card colors */
+.tl-stat-card:nth-child(1) {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.28);
+}
+.tl-stat-card:nth-child(2) {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.28);
+}
+.tl-stat-card:nth-child(3) {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.28);
+}
+
+/* White text on all colored cards */
+.tl-stat-card:nth-child(1) .tl-stat-label,
+.tl-stat-card:nth-child(2) .tl-stat-label,
+.tl-stat-card:nth-child(3) .tl-stat-label { color: rgba(255,255,255,0.78); }
+
+.tl-stat-card:nth-child(1) .tl-stat-value,
+.tl-stat-card:nth-child(2) .tl-stat-value,
+.tl-stat-card:nth-child(3) .tl-stat-value { color: #fff; }
+
+.tl-stat-card:nth-child(1) .tl-stat-icon,
+.tl-stat-card:nth-child(2) .tl-stat-icon,
+.tl-stat-card:nth-child(3) .tl-stat-icon {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+/* Ghost number in background — same as viewproject */
+.tl-stat-card::after {
+  content: attr(data-value);
+  position: absolute;
+  right: 16px;
+  bottom: -10px;
+  font-size: 60px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.12);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+/* Section headers - colored bottom border */
+.tl-section-header {
+  border-bottom: 2px solid #4f46e5;
+  padding-bottom: 0.75rem;
+}
+
+/* Intern rows - rank-colored left borders */
+/* Rank 1 — Gold */
+.tl-intern-row:nth-child(1) {
+  background: linear-gradient(90deg, #fef3c7, #fffbeb);
+  border-left: 4px solid #f59e0b;
+}
+
+/* Rank 2 — Silver */
+.tl-intern-row:nth-child(2) {
+  background: linear-gradient(90deg, #f1f5f9, #f8fafc);
+  border-left: 4px solid #94a3b8;
+}
+
+/* Rank 3 — Bronze */
+.tl-intern-row:nth-child(3) {
+  background: linear-gradient(90deg, #fdf0e6, #fff7f0);
+  border-left: 4px solid #cd7f32;
+}
+.tl-intern-row:nth-child(n+4) {
+  background: linear-gradient(90deg, #eff6ff, #f0f9ff);
+  border-left: 4px solid #3b82f6;
+
+}
+
+/* Eval cards — indigo purple to match sidebar */
+.tl-eval-card {
+  background: linear-gradient(180deg, #eef2ff 0%, #ede9fe 50%, #f5f3ff 100%);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid #c4b5fd;
+  border-left: 4px solid #6366f1;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tl-eval-card:hover {
+  background: linear-gradient(180deg, #e0e7ff 0%, #ede9fe 50%, #ede9fe 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+}
+
+.tl-eval-card:nth-child(3n+1),
+.tl-eval-card:nth-child(3n+2),
+.tl-eval-card:nth-child(3n+3) {
+  background: linear-gradient(180deg, #eef2ff 0%, #ede9fe 50%, #f5f3ff 100%);
+  border-left: 4px solid #6366f1;
+}
+
+.tl-eval-icon {
+  background: rgba(99, 102, 241, 0.15);
+  color: #4f46e5;
+}
+
+.tl-eval-count {
+  color: #4f46e5;
+}
+
+.tl-eval-title {
+  color: #1e1b4b;
 }
