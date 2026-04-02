@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login";
 import InternDashboard from "./pages/internside/interndashboard";
 import TeamLeadDashboard from "./pages/teamleaderside/teamleaderdashboard";
@@ -17,7 +17,7 @@ import AdminDashboard from "./pages/adminside/admindashboard";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
 
         {/* LOGIN */}
@@ -158,7 +158,7 @@ function App() {
 
 
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
