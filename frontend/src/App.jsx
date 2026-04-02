@@ -23,6 +23,8 @@ function App() {
         {/* LOGIN */}
         <Route path="/" element={<Login />} />
 
+        <Route path="*" element={<Login />} />
+
         {/* INTERN */}
         <Route
           path="/intern"
