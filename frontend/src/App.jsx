@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login";
 import InternDashboard from "./pages/internside/interndashboard";
 import TeamLeadDashboard from "./pages/teamleaderside/teamleaderdashboard";
@@ -17,7 +17,7 @@ import AdminDashboard from "./pages/adminside/admindashboard";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
 
         {/* LOGIN */}
@@ -45,33 +45,33 @@ function App() {
 
         {/* INTERN TASK STATUS */}
         <Route
-        path="/taskstatus"
-        element={
-          <ProtectedRoute role="intern">
-          <TaskStatus />
-          </ProtectedRoute>
-        }
+          path="/taskstatus"
+          element={
+            <ProtectedRoute role="intern">
+              <TaskStatus />
+            </ProtectedRoute>
+          }
         />
 
         {/* INTERN EVALUATION STATUS */}
         <Route
-        path="/viewevaluation"
-        element={
+          path="/viewevaluation"
+          element={
             <ProtectedRoute role="intern">
               <ViewEvaluation />
             </ProtectedRoute>
-        }
+          }
         />
 
 
         {/* VIEW PROJECTS */}
         <Route
-        path="/viewproject"
-        element={
+          path="/viewproject"
+          element={
             <ProtectedRoute role="teamlead">
-            <ViewProjects />
-          </ProtectedRoute>
-        }
+              <ViewProjects />
+            </ProtectedRoute>
+          }
         />
 
 
@@ -128,37 +128,37 @@ function App() {
 
         {/* step 4 : intern ranking for teamleader */}
         <Route
-  path="/internranking"
-  element={
-    <ProtectedRoute role="teamlead">
-      <InternRanking />
-    </ProtectedRoute>
-  }
-/>
+          path="/internranking"
+          element={
+            <ProtectedRoute role="teamlead">
+              <InternRanking />
+            </ProtectedRoute>
+          }
+        />
 
-    <Route
-  path="/addtask"
-  element={
-    <ProtectedRoute role="teamlead">
-      <AddTask />
-    </ProtectedRoute>
-  }
-/>
+        <Route
+          path="/addtask"
+          element={
+            <ProtectedRoute role="teamlead">
+              <AddTask />
+            </ProtectedRoute>
+          }
+        />
 
-{/* VIEW TASKS */}
-<Route
-  path="/viewtasks"
-  element={
-    <ProtectedRoute role="teamlead">
-      <ViewTasks />
-    </ProtectedRoute>
-  }
-/>
+        {/* VIEW TASKS */}
+        <Route
+          path="/viewtasks"
+          element={
+            <ProtectedRoute role="teamlead">
+              <ViewTasks />
+            </ProtectedRoute>
+          }
+        />
 
 
 
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
